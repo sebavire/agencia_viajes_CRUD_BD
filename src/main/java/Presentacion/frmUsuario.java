@@ -41,6 +41,8 @@ public class frmUsuario extends javax.swing.JFrame {
         campoId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
+        botonEliminar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -60,7 +62,7 @@ public class frmUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setText("Nombe:");
+        jLabel3.setText("Nombre:");
 
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,26 +97,43 @@ public class frmUsuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaUsuarios);
 
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(botonAceptar)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
                             .addGap(18, 18, 18)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonAceptar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(botonEliminar)
+                    .addComponent(botonModificar))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +149,13 @@ public class frmUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
-                        .addComponent(botonAceptar))
+                        .addComponent(botonAceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonModificar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,22 +182,22 @@ public class frmUsuario extends javax.swing.JFrame {
 
             actualizarTabla();
             //Se muestra un mensaje al usuario:
-            JOptionPane.showMessageDialog(this, 
-                    "Usuario ingresado correctamente", 
-                    "Nuevo usuario", 
+            JOptionPane.showMessageDialog(this,
+                    "Usuario ingresado correctamente",
+                    "Nuevo usuario",
                     JOptionPane.INFORMATION_MESSAGE);
-            
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, 
-                    "No se pudo ingresar el usuario", 
-                    "NError", 
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo ingresar el usuario",
+                    "NError",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
         int fila = tablaUsuarios.getSelectedRow();
-        
+
         this.campoId.setText(tablaUsuarios.getValueAt(fila, 0).toString());
         this.campoNombre.setText(tablaUsuarios.getValueAt(fila, 1).toString());
     }//GEN-LAST:event_tablaUsuariosMouseClicked
@@ -183,18 +206,80 @@ public class frmUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIdActionPerformed
 
-    private void actualizarTabla(){
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        //se obtiene el numero de fila de seleccionada de la tabla:
+        int fila = this.tablaUsuarios.getSelectedRow();
+
+        if (fila == -1) {
+            //Se muestra un mensaje al usuario:
+            JOptionPane.showMessageDialog(this,
+                    "Debe seleccionar una fila paraS eliminar",
+                    "Eliminar usuario",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            //Se pregunta al usuario:
+            int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar el elemento?",
+                    "Eliminar Usuario",
+                    JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                //Se elimina el elemento:
+                this.agencia.eliminarUsuario(fila);
+                actualizarTabla();
+            }
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        try {
+            int fila = this.tablaUsuarios.getSelectedRow();
+
+            if (fila == -1) {
+                //Se muestra un mensaje al usuario:
+                JOptionPane.showMessageDialog(this,
+                        "Debe seleccionar una fila para eliminar",
+                        "Eliminar usuario",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+                Usuario modificado = new Usuario(
+                        Integer.parseInt(campoId.getText()), 
+                        campoNombre.getText());
+                this.agencia.modificarUsuario(fila, modificado);
+
+                //Se limpian los campos:
+                this.campoId.setText("");
+                this.campoNombre.setText("");
+
+                actualizarTabla();
+                //Se muestra un mensaje al usuario:
+                JOptionPane.showMessageDialog(this,
+                        "Usuario modificado correctamente",
+                        "Modificar usuario",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo modificar el usuario",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) tablaUsuarios.getModel();
         model.setRowCount(0);
-        
-        for(Usuario usuario : agencia.listarUsuarios()){
-            model.addRow(new Object[] {usuario.getId(), usuario.getNombre()});
+
+        for (Usuario usuario : agencia.listarUsuarios()) {
+            model.addRow(new Object[]{usuario.getId(), usuario.getNombre()});
         }
     }
-        
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JButton jButton1;
