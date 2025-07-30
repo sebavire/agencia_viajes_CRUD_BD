@@ -19,6 +19,7 @@ public class frmUsuario extends javax.swing.JFrame {
     public frmUsuario(Agencia agencia) {
         this.agencia = agencia;
         initComponents();
+        actualizarTabla();
     }
 
     /**
@@ -139,7 +140,8 @@ public class frmUsuario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -153,8 +155,7 @@ public class frmUsuario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonModificar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(botonModificar)))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
 
@@ -196,8 +197,10 @@ public class frmUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
+        //Se obtiene el numero de fila seleccionada:
         int fila = tablaUsuarios.getSelectedRow();
 
+        //Se establecen los valores del elemento en los campos:
         this.campoId.setText(tablaUsuarios.getValueAt(fila, 0).toString());
         this.campoNombre.setText(tablaUsuarios.getValueAt(fila, 1).toString());
     }//GEN-LAST:event_tablaUsuariosMouseClicked
@@ -237,7 +240,7 @@ public class frmUsuario extends javax.swing.JFrame {
             if (fila == -1) {
                 //Se muestra un mensaje al usuario:
                 JOptionPane.showMessageDialog(this,
-                        "Debe seleccionar una fila para eliminar",
+                        "Debe seleccionar una fila para modificar",
                         "Eliminar usuario",
                         JOptionPane.WARNING_MESSAGE);
             } else {
