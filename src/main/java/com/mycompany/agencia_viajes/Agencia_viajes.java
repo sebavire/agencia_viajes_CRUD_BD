@@ -6,7 +6,7 @@ package com.mycompany.agencia_viajes;
 
 import Dominio.Agencia;
 import Presentacion.formularioPrincipal;
-import Presentacion.frmUsuario;
+import Presentacion.formularioUsuarios;
 
 
 /**
@@ -21,7 +21,7 @@ public class Agencia_viajes {
         //formulario.setVisible(true);
         
         Agencia agencia = new Agencia();  
-        formularioPrincipal formulario = new formularioPrincipal();
+        formularioPrincipal formulario = new formularioPrincipal(agencia);
         formulario.setVisible(true);
     }
 }

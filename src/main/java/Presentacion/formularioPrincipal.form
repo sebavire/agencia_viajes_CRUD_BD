@@ -26,27 +26,37 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="etiquetaLogo" min="-2" pref="192" max="-2" attributes="0"/>
-              <EmptySpace pref="250" max="32767" attributes="0"/>
-              <Component id="botonUsuarios" min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botonUsuarios" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="169" max="32767" attributes="0"/>
+              <Component id="botonUsuarios2" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="8" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="etiquetaLogo" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
-                  <Component id="botonUsuarios" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="etiquetaLogo" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="botonUsuarios2" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="botonUsuarios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="botonUsuarios">
+    <Component class="javax.swing.JButton" name="botonUsuarios2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Usuarios"/>
       </Properties>
@@ -55,6 +65,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Logo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonUsuarios">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Usuarios"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonUsuariosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

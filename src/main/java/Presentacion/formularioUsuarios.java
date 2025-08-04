@@ -9,14 +9,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class frmUsuario extends javax.swing.JFrame {
+public class formularioUsuarios extends javax.swing.JFrame {
 
     Agencia agencia;
 
     /**
      * Creates new form frmUsuario
      */
-    public frmUsuario(Agencia agencia) {
+    public formularioUsuarios(Agencia agencia) {
         this.agencia = agencia;
         initComponents();
         actualizarTabla();
