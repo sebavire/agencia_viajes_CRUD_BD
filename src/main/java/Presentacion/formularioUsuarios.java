@@ -1,6 +1,6 @@
 package Presentacion;
 
-import Dominio.Agencia;
+import Dominio.Principal;
 import Dominio.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -11,13 +11,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class formularioUsuarios extends javax.swing.JFrame {
 
-    Agencia agencia;
+    Principal principal;
 
+    public Principal getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
+    }
+    
     /**
      * Creates new form frmUsuario
      */
-    public formularioUsuarios(Agencia agencia) {
-        this.agencia = agencia;
+    public formularioUsuarios(Principal principal) {
+        this.principal = principal;
         initComponents();
         actualizarTabla();
     }
@@ -175,7 +183,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
             //se crea un nuevo usuario a partir de los datos
             //ingresados en los campos del formulario:
             Usuario nuevoUsuario = new Usuario(Integer.parseInt(campoId.getText()), campoNombre.getText());
-            this.agencia.agregarUsuario(nuevoUsuario);
+            this.principal.agregarUsuario(nuevoUsuario);
 
             //Se limpian los campos:
             this.campoId.setText("");
@@ -227,7 +235,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
                 //Se elimina el elemento:
-                this.agencia.eliminarUsuario(fila);
+                this.principal.eliminarUsuario(fila);
                 actualizarTabla();
             }
         }
@@ -247,7 +255,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
                 Usuario modificado = new Usuario(
                         Integer.parseInt(campoId.getText()), 
                         campoNombre.getText());
-                this.agencia.modificarUsuario(fila, modificado);
+                this.principal.modificarUsuario(fila, modificado);
 
                 //Se limpian los campos:
                 this.campoId.setText("");
@@ -273,7 +281,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tablaUsuarios.getModel();
         model.setRowCount(0);
 
-        for (Usuario usuario : agencia.listarUsuarios()) {
+        for (Usuario usuario : principal.listarUsuarios()) {
             model.addRow(new Object[]{usuario.getId(), usuario.getNombre()});
         }
     }

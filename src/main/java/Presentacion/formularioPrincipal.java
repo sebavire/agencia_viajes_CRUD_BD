@@ -4,7 +4,7 @@
  */
 package Presentacion;
 
-import Dominio.Agencia;
+import Dominio.Principal;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -16,18 +16,18 @@ import javax.swing.JFrame;
  */
 public class formularioPrincipal extends javax.swing.JFrame {
 
-    private Agencia agencia;
+    private Principal principal;
 
-    public Agencia getAgencia() {
-        return agencia;
+    public Principal getPrincipal() {
+        return principal;
     }
 
-    public void setAgencia(Agencia agencia) {
-        this.agencia = agencia;
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
     }
     
-    public formularioPrincipal(Agencia agencia) {
-        this.agencia = agencia;
+    public formularioPrincipal(Principal principal) {
+        this.principal = principal;
         initComponents();
         
         //Se carga la imagen desde el archivo:
@@ -125,7 +125,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuariosActionPerformed
-        formularioUsuarios form = new formularioUsuarios(this.agencia);
+        formularioUsuarios form = new formularioUsuarios(this.principal);
         form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         form.setVisible(true);
     }//GEN-LAST:event_botonUsuariosActionPerformed
