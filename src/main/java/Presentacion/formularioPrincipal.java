@@ -79,6 +79,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         botonUsuarios2 = new javax.swing.JButton();
         etiquetaLogo = new javax.swing.JLabel();
         botonUsuarios = new javax.swing.JButton();
+        botonReservas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +94,13 @@ public class formularioPrincipal extends javax.swing.JFrame {
             }
         });
 
+        botonReservas.setText("Reservas");
+        botonReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonReservasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +109,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(etiquetaLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonUsuarios)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonUsuarios)
+                    .addComponent(botonReservas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addComponent(botonUsuarios2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
@@ -118,7 +128,9 @@ public class formularioPrincipal extends javax.swing.JFrame {
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(botonUsuarios)
-                        .addGap(106, 106, 106))))
+                        .addGap(28, 28, 28)
+                        .addComponent(botonReservas)
+                        .addGap(55, 55, 55))))
         );
 
         pack();
@@ -130,9 +142,16 @@ public class formularioPrincipal extends javax.swing.JFrame {
         form.setVisible(true);
     }//GEN-LAST:event_botonUsuariosActionPerformed
 
+    private void botonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservasActionPerformed
+        formularioReservas form = new formularioReservas(this.principal);
+        form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.setVisible(true);
+    }//GEN-LAST:event_botonReservasActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonReservas;
     private javax.swing.JButton botonUsuarios;
     private javax.swing.JButton botonUsuarios2;
     private javax.swing.JLabel etiquetaLogo;
