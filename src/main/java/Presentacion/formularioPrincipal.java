@@ -5,6 +5,7 @@
 package Presentacion;
 
 import Dominio.Principal;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -36,7 +37,7 @@ public class formularioPrincipal extends javax.swing.JFrame {
         
         //Se modifica el tamaño de la imagen:
         Image imagenEscalada = 
-                iconoOriginal.getImage().getScaledInstance(100, 300, Image.SCALE_SMOOTH);
+                iconoOriginal.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         
         ImageIcon iconoRedimensionado = new ImageIcon(imagenEscalada);
         
