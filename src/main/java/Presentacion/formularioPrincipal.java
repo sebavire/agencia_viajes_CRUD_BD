@@ -140,12 +140,14 @@ public class formularioPrincipal extends javax.swing.JFrame {
     private void botonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonUsuariosActionPerformed
         formularioUsuarios form = new formularioUsuarios(this.principal);
         form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
     }//GEN-LAST:event_botonUsuariosActionPerformed
 
     private void botonReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReservasActionPerformed
         formularioReservas form = new formularioReservas(this.principal);
         form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        form.setLocationRelativeTo(null);
         form.setVisible(true);
     }//GEN-LAST:event_botonReservasActionPerformed
 

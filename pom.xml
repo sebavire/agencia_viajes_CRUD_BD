@@ -12,6 +12,14 @@
         <exec.mainClass>com.mycompany.agencia_viajes.Agencia_viajes</exec.mainClass>
     </properties>
     <dependencies>
+        
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.4.0</version>
+        </dependency>
+        
         <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
         <dependency>
             <groupId>com.toedter</groupId>

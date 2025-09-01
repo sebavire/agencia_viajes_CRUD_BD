@@ -3,11 +3,13 @@ package Dominio;
 public class Usuario {
     private int id;
     private String nombre;
+    private String mail;
     //... Los demás atributos
 
-    public Usuario(int id, String nombre) {
+    public Usuario(int id, String nombre, String mail) {
         this.id = id;
         this.nombre = nombre;
+        this.mail = mail;
     }
 
     public int getId() {
@@ -26,21 +28,18 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     @Override
     public String toString() {
         return "id: " + id + ", nombre: " + nombre;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

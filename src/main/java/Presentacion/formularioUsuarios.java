@@ -20,7 +20,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
     public void setPrincipal(Principal principal) {
         this.principal = principal;
     }
-    
+
     /**
      * Creates new form frmUsuario
      */
@@ -52,6 +52,9 @@ public class formularioUsuarios extends javax.swing.JFrame {
         tablaUsuarios = new javax.swing.JTable();
         botonEliminar = new javax.swing.JButton();
         botonModificar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        campoMail = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +85,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
 
         jLabel1.setText("Id:");
 
+        campoId.setEditable(false);
         campoId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoIdActionPerformed(evt);
@@ -90,13 +94,13 @@ public class formularioUsuarios extends javax.swing.JFrame {
 
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Id", "Nombre"
+                "Id", "Nombre", "Correo"
             }
         ));
         tablaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,6 +124,11 @@ public class formularioUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        jLabel4.setText("Usuarios");
+
+        jLabel5.setText("jLabel5");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,43 +137,54 @@ public class formularioUsuarios extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAceptar)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel3))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                                .addComponent(campoMail))))
+                    .addComponent(botonAceptar)
                     .addComponent(botonEliminar)
                     .addComponent(botonModificar))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31)
+                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(campoMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonAceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonModificar)))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -182,12 +202,15 @@ public class formularioUsuarios extends javax.swing.JFrame {
         try {
             //se crea un nuevo usuario a partir de los datos
             //ingresados en los campos del formulario:
-            Usuario nuevoUsuario = new Usuario(Integer.parseInt(campoId.getText()), campoNombre.getText());
+            String nombre = campoNombre.getText();
+            String mail = campoMail.getText();
+            Usuario nuevoUsuario = new Usuario(0, nombre, mail);
             this.principal.agregarUsuario(nuevoUsuario);
 
             //Se limpian los campos:
             this.campoId.setText("");
             this.campoNombre.setText("");
+            this.campoMail.setText("");
 
             actualizarTabla();
             //Se muestra un mensaje al usuario:
@@ -211,6 +234,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
         //Se establecen los valores del elemento en los campos:
         this.campoId.setText(tablaUsuarios.getValueAt(fila, 0).toString());
         this.campoNombre.setText(tablaUsuarios.getValueAt(fila, 1).toString());
+        this.campoMail.setText(tablaUsuarios.getValueAt(fila, 2).toString());
     }//GEN-LAST:event_tablaUsuariosMouseClicked
 
     private void campoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIdActionPerformed
@@ -235,7 +259,14 @@ public class formularioUsuarios extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
                 //Se elimina el elemento:
-                this.principal.eliminarUsuario(fila);
+
+                this.principal.eliminarUsuario(Integer.parseInt(campoId.getText()));
+
+                //Se limpian los campos:
+                this.campoId.setText("");
+                this.campoNombre.setText("");
+                this.campoMail.setText("");
+
                 actualizarTabla();
             }
         }
@@ -252,14 +283,17 @@ public class formularioUsuarios extends javax.swing.JFrame {
                         "Eliminar usuario",
                         JOptionPane.WARNING_MESSAGE);
             } else {
-                Usuario modificado = new Usuario(
-                        Integer.parseInt(campoId.getText()), 
-                        campoNombre.getText());
-                this.principal.modificarUsuario(fila, modificado);
+                int id = Integer.parseInt(campoId.getText());
+                String nombre = campoNombre.getText();
+                String mail = campoMail.getText();
+                Usuario modificado = new Usuario(id, nombre, mail);
+
+                this.principal.modificarUsuario(modificado);
 
                 //Se limpian los campos:
                 this.campoId.setText("");
                 this.campoNombre.setText("");
+                this.campoMail.setText("");
 
                 actualizarTabla();
                 //Se muestra un mensaje al usuario:
@@ -282,7 +316,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
         model.setRowCount(0);
 
         for (Usuario usuario : principal.listarUsuarios()) {
-            model.addRow(new Object[]{usuario.getId(), usuario.getNombre()});
+            model.addRow(new Object[]{usuario.getId(), usuario.getNombre(), usuario.getMail()});
         }
     }
 
@@ -292,12 +326,15 @@ public class formularioUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonModificar;
     private javax.swing.JTextField campoId;
+    private javax.swing.JTextField campoMail;
     private javax.swing.JTextField campoNombre;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tablaUsuarios;

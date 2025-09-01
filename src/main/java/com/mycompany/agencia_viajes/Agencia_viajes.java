@@ -22,6 +22,7 @@ public class Agencia_viajes {
         
         Principal agencia = new Principal();  
         formularioPrincipal formulario = new formularioPrincipal(agencia);
+        formulario.setLocationRelativeTo(null);
         formulario.setVisible(true);
     }
 }
