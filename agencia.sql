@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-09-2025 a las 15:59:56
+-- Tiempo de generación: 09-09-2025 a las 19:56:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,26 +24,55 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reservas`
+--
+
+CREATE TABLE `reservas` (
+  `id` int(11) NOT NULL,
+  `pais` varchar(80) NOT NULL,
+  `ciudad` varchar(80) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `pais`, `ciudad`, `id_usuario`) VALUES
+(1, 'Brasil', 'Camboriu', 7),
+(2, 'zxczxc', 'zxc', 7),
+(3, 'asdasd', 'a', 7);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `mail` varchar(50) NOT NULL
+  `mail` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `mail`) VALUES
-(5, 'v bvnm', 'aaaaaaaaaaaaaaa'),
-(7, 'eeeeeee', 'ghjfghj');
+INSERT INTO `usuarios` (`id`, `nombre`, `mail`, `password`) VALUES
+(5, 'v bvnm', 'aaaaaaaaaaaaaaa', ''),
+(7, 'eeeeeee', 'ghjfghj', '');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -54,6 +83,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `reservas`
+--
+ALTER TABLE `reservas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
