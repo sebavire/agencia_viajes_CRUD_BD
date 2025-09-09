@@ -216,13 +216,13 @@ public class formularioUsuarios extends javax.swing.JFrame {
             //Se muestra un mensaje al usuario:
             JOptionPane.showMessageDialog(this,
                     "Usuario ingresado correctamente",
-                    "Nuevo usuario",
+                    "Nuevo Usuario",
                     JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "No se pudo ingresar el usuario",
-                    "NError",
+                    "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAceptarActionPerformed
@@ -248,8 +248,8 @@ public class formularioUsuarios extends javax.swing.JFrame {
         if (fila == -1) {
             //Se muestra un mensaje al usuario:
             JOptionPane.showMessageDialog(this,
-                    "Debe seleccionar una fila paraS eliminar",
-                    "Eliminar usuario",
+                    "Debe seleccionar una fila para eliminar",
+                    "Eliminar Usuario",
                     JOptionPane.WARNING_MESSAGE);
         } else {
             //Se pregunta al usuario:
@@ -280,7 +280,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
                 //Se muestra un mensaje al usuario:
                 JOptionPane.showMessageDialog(this,
                         "Debe seleccionar una fila para modificar",
-                        "Eliminar usuario",
+                        "Modificar Usuario",
                         JOptionPane.WARNING_MESSAGE);
             } else {
                 int id = Integer.parseInt(campoId.getText());
@@ -299,7 +299,7 @@ public class formularioUsuarios extends javax.swing.JFrame {
                 //Se muestra un mensaje al usuario:
                 JOptionPane.showMessageDialog(this,
                         "Usuario modificado correctamente",
-                        "Modificar usuario",
+                        "Modificar Usuario",
                         JOptionPane.INFORMATION_MESSAGE);
             }
 

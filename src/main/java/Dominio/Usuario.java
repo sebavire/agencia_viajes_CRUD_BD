@@ -12,6 +12,9 @@ public class Usuario {
         this.mail = mail;
     }
 
+    public Usuario() {
+    }
+
     public int getId() {
         return id;
     }

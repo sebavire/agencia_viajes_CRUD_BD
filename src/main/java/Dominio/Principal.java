@@ -1,16 +1,42 @@
 package Dominio;
 
-import Persistencia.UsuarioDAO;
+import Persistencia.*;
 import java.util.ArrayList;
 
 public class Principal {
 
     private ArrayList<Usuario> listaUsuarios;
+    private ArrayList<Reserva> listaReservas;
 
     public Principal() {
         listaUsuarios = new ArrayList();
+        listaReservas = new ArrayList();
     }
     
+    // Métodos de Reservas:
+    public ArrayList<Reserva> listarReservas() {
+        ReservaDAO dao = new ReservaDAO();
+        listaReservas = dao.obtener();
+        return listaReservas;
+    }
+    
+    public void agregarReserva(Reserva r) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.guardar(r);
+    }
+    
+    public void eliminarReserva(int id) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.eliminar(id);
+    }
+    
+    public void modificarReserva(Reserva r) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.modificar(r);
+    }
+    
+    
+    // Métodos de Usuarios:
     public ArrayList<Usuario> listarUsuarios() {
         UsuarioDAO dao = new UsuarioDAO();
         listaUsuarios = dao.obtener();
@@ -22,15 +48,17 @@ public class Principal {
         dao.guardar(u);
     }
     
-    public void eliminarUsuario(int posicion) {
+    public void eliminarUsuario(int id) {
         UsuarioDAO dao = new UsuarioDAO();
-        dao.eliminar(posicion);
+        dao.eliminar(id);
     }
     
     public void modificarUsuario(Usuario u) {
         UsuarioDAO dao = new UsuarioDAO();
         dao.modificar(u);
     }
+    
+    
 
     
 }

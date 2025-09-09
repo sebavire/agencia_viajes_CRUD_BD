@@ -1,32 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Presentacion;
 
 import Dominio.Principal;
 import Dominio.Reserva;
 import Dominio.Usuario;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Usuario
- */
 public class formularioReservas extends javax.swing.JFrame {
 
     private Principal principal;
-    /**
-     * Creates new form formularioReservas
-     */
+
     public formularioReservas(Principal principal) {
         this.principal = principal;
         initComponents();
         llenarCombo();
+        actualizarTabla();
     }
-    
-    private void llenarCombo(){
-        for(Usuario u : principal.listarUsuarios()){
+
+    private void llenarCombo() {
+        for (Usuario u : principal.listarUsuarios()) {
             this.comboUsuarios.addItem(u.toString());
+        }
+    }
+
+    private void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tablaReservas.getModel();
+        model.setRowCount(0);
+
+        for (Reserva reserva : principal.listarReservas()) {
+            model.addRow(new Object[]{reserva.getId(), reserva.getPais(),
+                reserva.getCiudad(), reserva.getUsuario().getNombre()});
         }
     }
 
@@ -48,6 +52,11 @@ public class formularioReservas extends javax.swing.JFrame {
         campoCiudad = new javax.swing.JTextField();
         comboUsuarios = new javax.swing.JComboBox<>();
         botonAceptar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaReservas = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        botonEliminar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +68,47 @@ public class formularioReservas extends javax.swing.JFrame {
 
         jLabel4.setText("usuario:");
 
+        campoId.setEditable(false);
+
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAceptarActionPerformed(evt);
+            }
+        });
+
+        tablaReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Pais", "Ciudad", "Usuario"
+            }
+        ));
+        tablaReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaReservasMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaReservas);
+
+        jLabel5.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
+        jLabel5.setText("Reservas");
+
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
+
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonModificarActionPerformed(evt);
             }
         });
 
@@ -73,7 +119,6 @@ public class formularioReservas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonAceptar)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -86,58 +131,206 @@ public class formularioReservas extends javax.swing.JFrame {
                                 .addComponent(campoId, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                 .addComponent(campoPais)
                                 .addComponent(campoCiudad))
-                            .addComponent(comboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(428, Short.MAX_VALUE))
+                            .addComponent(comboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botonAceptar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(campoPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(campoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(comboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(botonAceptar)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(campoPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(campoCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(comboUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonAceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonEliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonModificar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        //Obtener la posición del elemento seleccionado:
-        int posicion = this.comboUsuarios.getSelectedIndex();
-        //Obtener el elemento por posición:
-        Usuario seleccionado = this.principal.listarUsuarios().get(posicion);
-       
-        int id=Integer.parseInt(this.campoId.getText());
-        String pais = this.campoPais.getText();
-        String ciudad = this.campoCiudad.getText();
-        
-        
-        //Crear la reserva vinvulándola con el usuario:
-        Reserva nuevaReserva = new Reserva(id, pais, ciudad, seleccionado);
-        
-        System.out.println("Seleccionado: " + seleccionado.toString());
-        System.out.println(nuevaReserva.toString());
+        try {
+
+            //Obtener la posición del elemento seleccionado:
+            int posicion = this.comboUsuarios.getSelectedIndex();
+            //Obtener el elemento por posición:
+            Usuario seleccionado = this.principal.listarUsuarios().get(posicion);
+
+            // El resto de los datos de la reserva:
+            int id = 0;
+            String pais = this.campoPais.getText();
+            String ciudad = this.campoCiudad.getText();
+
+            //Crear la reserva vinvulándola con el usuario:
+            Reserva nuevaReserva = new Reserva(id, pais, ciudad, seleccionado);
+
+            this.principal.agregarReserva(nuevaReserva);
+
+            //Se limpian los campos:
+            this.campoId.setText("");
+            this.campoPais.setText("");
+            this.campoCiudad.setText("");
+            this.comboUsuarios.setSelectedIndex(0);
+
+            actualizarTabla();
+
+            //Se muestra un mensaje al usuario:
+            JOptionPane.showMessageDialog(this,
+                    "Reserva ingresada correctamente",
+                    "Nueva Reserva",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo ingresar la reserva",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botonAceptarActionPerformed
 
-   
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        //se obtiene el numero de fila de seleccionada de la tabla:
+        int fila = this.tablaReservas.getSelectedRow();
+
+        if (fila == -1) {
+            //Se muestra un mensaje al usuario:
+            JOptionPane.showMessageDialog(this,
+                    "Debe seleccionar una fila para eliminar",
+                    "Eliminar Reserva",
+                    JOptionPane.WARNING_MESSAGE);
+        } else {
+            //Se pregunta al usuario:
+            int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Seguro desea eliminar el elemento?",
+                    "Eliminar Reserva",
+                    JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                //Se elimina el elemento:
+
+                this.principal.eliminarReserva(Integer.parseInt(campoId.getText()));
+
+                //Se limpian los campos:
+                this.campoId.setText("");
+                this.campoPais.setText("");
+                this.campoCiudad.setText("");
+                this.comboUsuarios.setSelectedIndex(0);
+
+                actualizarTabla();
+            }
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+        try {
+            int fila = this.tablaReservas.getSelectedRow();
+
+            if (fila == -1) {
+                //Se muestra un mensaje al usuario:
+                JOptionPane.showMessageDialog(this,
+                        "Debe seleccionar una fila para modificar",
+                        "Modificar Reserva",
+                        JOptionPane.WARNING_MESSAGE);
+            } else {
+                //Obtener la posición del elemento seleccionado:
+                int posicion = this.comboUsuarios.getSelectedIndex();
+                //Obtener el elemento por posición:
+                Usuario seleccionado = this.principal.listarUsuarios().get(posicion);
+
+                int id = Integer.parseInt(campoId.getText());
+                String pais = campoPais.getText();
+                String ciudad = campoCiudad.getText();
+
+                Reserva modificada = new Reserva(id, pais, ciudad, seleccionado);
+
+                this.principal.modificarReserva(modificada);
+
+                //Se limpian los campos:
+                this.campoId.setText("");
+                this.campoPais.setText("");
+                this.campoCiudad.setText("");
+                this.comboUsuarios.setSelectedIndex(0);
+
+                actualizarTabla();
+
+                //Se muestra un mensaje al usuario:
+                JOptionPane.showMessageDialog(this,
+                        "Reserva modificada correctamente",
+                        "Modificar Reserva",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "No se pudo modificar la reserva",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void tablaReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaReservasMouseClicked
+        //Se obtiene el numero de fila seleccionada:
+        int fila = tablaReservas.getSelectedRow();
+
+        //Se establecen los valores del elemento en los campos:
+        this.campoId.setText(tablaReservas.getValueAt(fila, 0).toString());
+        this.campoPais.setText(tablaReservas.getValueAt(fila, 1).toString());
+        this.campoCiudad.setText(tablaReservas.getValueAt(fila, 2).toString());
+        
+        // Obtener el usuario de la reserva:
+        Usuario usuarioReserva = this.principal.listarReservas().get(fila).getUsuario();
+
+         // Buscar el usuario en el combobox por su nombre
+        seleccionarUsuarioEnCombo(usuarioReserva.getId());
+    }//GEN-LAST:event_tablaReservasMouseClicked
+
+    private void seleccionarUsuarioEnCombo(int id) {
+        // Busca la posicion de un usuario en la lista por Id:
+        int posicion = 0;
+        for (int i = 0; i < this.principal.listarUsuarios().size(); i++) {
+            if(this.principal.listarUsuarios().get(i).getId() == id){
+                posicion = i;
+                break;
+            }
+        }
+        // Selecciona el usuario en la posición:
+        this.comboUsuarios.setSelectedIndex(posicion);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JTextField campoCiudad;
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField campoPais;
@@ -146,5 +339,8 @@ public class formularioReservas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaReservas;
     // End of variables declaration//GEN-END:variables
 }
