@@ -309,22 +309,28 @@ public class formularioReservas extends javax.swing.JFrame {
         
         // Obtener el usuario de la reserva:
         Usuario usuarioReserva = this.principal.listarReservas().get(fila).getUsuario();
+        // Obtener la posición del usuario en el ArrayList:
+        int posicionUsuario = this.principal.posicionUsuario(usuarioReserva);
+        // Seleccionar el usuario en el combobox:
+        this.comboUsuarios.setSelectedIndex(posicionUsuario);
 
          // Buscar el usuario en el combobox por su nombre
-        seleccionarUsuarioEnCombo(usuarioReserva.getId());
+        //seleccionarUsuarioEnCombo(usuarioReserva.getId());
     }//GEN-LAST:event_tablaReservasMouseClicked
 
-    private void seleccionarUsuarioEnCombo(int id) {
+    private void seleccionarUsuarioEnCombo(int idSeleccionado) {
+        
+        
         // Busca la posicion de un usuario en la lista por Id:
-        int posicion = 0;
+        /*int posicion = 0;
         for (int i = 0; i < this.principal.listarUsuarios().size(); i++) {
-            if(this.principal.listarUsuarios().get(i).getId() == id){
+            if(this.principal.listarUsuarios().get(i).getId() == idSeleccionado){
                 posicion = i;
                 break;
             }
         }
         // Selecciona el usuario en la posición:
-        this.comboUsuarios.setSelectedIndex(posicion);
+        this.comboUsuarios.setSelectedIndex(posicion);*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -58,7 +58,17 @@ public class Principal {
         dao.modificar(u);
     }
     
-    
+    public int posicionUsuario(Usuario u){
+        // Recorre la lista de usuarios:
+        for (int i = 0; i < this.listaUsuarios.size(); i++) {
+            // Compara el id de cada usiario con el usuario seleccionado:
+            if(u.getId() == this.listaUsuarios.get(i).getId()){
+                // Cuando lo encuentra, devuelve la posición:
+                return i;
+            }
+        }
+        return 0;
+    }
 
     
 }
