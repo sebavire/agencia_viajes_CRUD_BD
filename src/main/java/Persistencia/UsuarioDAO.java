@@ -14,49 +14,64 @@ public class UsuarioDAO {
     private String usuario;
     private String contraseña;
     
+    // Parametros de conexion a la base de datos.
     public UsuarioDAO(){
         url = "jdbc:mysql://localhost:3306/agencia";
         usuario = "root";
         contraseña = "";
     }
     
+    // Función para obtener datos de la base.
     public ArrayList<Usuario> obtener(){
         ArrayList<Usuario> lista = new ArrayList<>();
+        // Sentencia SQL
         String sql = "SELECT * FROM usuarios;";
         try {
+            // Driver Manager: establece la conexión a la base de datos.
             Connection conexion = 
                     DriverManager.getConnection(url, usuario, contraseña);
             
+            // Statement permite ejecutar sentencias SQL sobre la base
             Statement sentencia = conexion.createStatement();
+            // ResultSet: representa el resuiltado de ejecutar la consulta SQL
+            // Contiene los datos devueltos por la base de datos.
+            // Es como una "tabla temporal en memoria" con las filas obtenidas.
             ResultSet rs = sentencia.executeQuery(sql);
 
-            //Recorre la tabla resultado 
-            //y crea un ArrayList con los elementos
+            // Se recorre el ResultSet fila por fila 
+            // y se crean objetos Usuario con los datos de cada fila.
             while (rs.next()) {
+                // Cada fila del ResultSet se convierte en un usuario
                 Usuario unUsuario = new Usuario(rs.getInt("id"), 
                         rs.getString("nombre"), rs.getString("mail"));
+                // Y se agrega al ArrayList para devolver
                 lista.add(unUsuario);
             }
+            // Se cierra la conexión
             conexion.close();
             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+        // Se devuelve el ArrayList creado con los datos de la base.
         return lista;
     }
     
+    // Método para insertar datos en la base.
     public void guardar(Usuario u){
-        //Sentencia SQL para insertar:
+        // Sentencia SQL para insertar:
         String sql = "INSERT INTO usuarios (nombre, mail) VALUES (?, ?)";
         try{
-            //Se crea la conexión:
+            // Se crea la conexión:
             Connection conexion = 
                     DriverManager.getConnection(url, usuario, contraseña);
             
+            // PreparedStatement representa una sentencia sql con parámetros. 
             PreparedStatement sentencia = conexion.prepareStatement(sql);
             
-            //Se cargan los valores del usuario:
+            // Se cargan los valores del usuario en la sentencia:
+            // Los signos de interrogación (?) son "marcadores de posición".
+            // setString(1, ...) carga el primer ?, setString(2, ...) el segundo.
             sentencia.setString(1, u.getNombre());
             sentencia.setString(2, u.getMail());
             
@@ -70,16 +85,19 @@ public class UsuarioDAO {
         }
     }
     
+    // Método para eliminar un registro de la base.
     public void eliminar(int id){
          //Sentencia SQL para insertar:
         String sql = "DELETE FROM usuarios WHERE id=?;";
         try{
             //Se crea la conexión:
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+            Connection conexion = 
+                    DriverManager.getConnection(url, usuario, contraseña);
             
+            // PreparedStatement representa una sentencia sql con parámetros.
             PreparedStatement sentencia = conexion.prepareStatement(sql);
             
-            //Se cargan los valores del usuario:
+            //Se cargan el parámetro id, en la sentencia sql:
             sentencia.setInt(1, id);
             
             //Se ejecuta la sentencia:
@@ -92,16 +110,19 @@ public class UsuarioDAO {
         }
     }
     
+    // Método para modificar un registro de la base.
     public void modificar(Usuario u){
-         //Sentencia SQL para insertar:
+         // Sentencia SQL para modificar:
         String sql = "UPDATE usuarios SET nombre=?, mail=? WHERE id=?;";
         try{
             //Se crea la conexión:
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+            Connection conexion = 
+                    DriverManager.getConnection(url, usuario, contraseña);
             
+            // PreparedStatement representa una sentencia sql con parámetros.
             PreparedStatement sentencia = conexion.prepareStatement(sql);
             
-            //Se cargan los valores del usuario:
+            // Se cargan los valores del usuario en la sentencia:
             sentencia.setString(1, u.getNombre());
             sentencia.setString(2, u.getMail());
             sentencia.setInt(3, u.getId());

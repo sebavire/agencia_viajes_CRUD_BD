@@ -4,6 +4,10 @@ import Persistencia.*;
 import java.util.ArrayList;
 
 public class Principal {
+    
+    // Principal actúa como "puente" entre la interfaz (formulario)
+    // y la persistencia (DAO o controller). 
+    // Aquí no hay SQL, solo llamadas a métodos del DAO.
 
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Reserva> listaReservas;
@@ -12,29 +16,6 @@ public class Principal {
         listaUsuarios = new ArrayList();
         listaReservas = new ArrayList();
     }
-    
-    // Métodos de Reservas:
-    public ArrayList<Reserva> listarReservas() {
-        ReservaDAO dao = new ReservaDAO();
-        listaReservas = dao.obtener();
-        return listaReservas;
-    }
-    
-    public void agregarReserva(Reserva r) {
-        ReservaDAO dao = new ReservaDAO();
-        dao.guardar(r);
-    }
-    
-    public void eliminarReserva(int id) {
-        ReservaDAO dao = new ReservaDAO();
-        dao.eliminar(id);
-    }
-    
-    public void modificarReserva(Reserva r) {
-        ReservaDAO dao = new ReservaDAO();
-        dao.modificar(r);
-    }
-    
     
     // Métodos de Usuarios:
     public ArrayList<Usuario> listarUsuarios() {
@@ -69,6 +50,31 @@ public class Principal {
         }
         return 0;
     }
+    
+    // Métodos de Reservas:
+    public ArrayList<Reserva> listarReservas() {
+        ReservaDAO dao = new ReservaDAO();
+        listaReservas = dao.obtener();
+        return listaReservas;
+    }
+    
+    public void agregarReserva(Reserva r) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.guardar(r);
+    }
+    
+    public void eliminarReserva(int id) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.eliminar(id);
+    }
+    
+    public void modificarReserva(Reserva r) {
+        ReservaDAO dao = new ReservaDAO();
+        dao.modificar(r);
+    }
+    
+    
+    
 
     
 }

@@ -2,6 +2,7 @@ package Presentacion;
 
 import Dominio.Principal;
 import Dominio.Usuario;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -76,10 +77,22 @@ public class formularioUsuarios extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre:");
 
+        campoNombre.setNextFocusableComponent(campoMail);
+        campoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoNombreKeyPressed(evt);
+            }
+        });
+
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAceptarActionPerformed(evt);
+            }
+        });
+        botonAceptar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                botonAceptarKeyPressed(evt);
             }
         });
 
@@ -127,7 +140,14 @@ public class formularioUsuarios extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("sansserif", 0, 20)); // NOI18N
         jLabel4.setText("Usuarios");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Correo");
+
+        campoMail.setNextFocusableComponent(botonAceptar);
+        campoMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                campoMailKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -310,6 +330,56 @@ public class formularioUsuarios extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonModificarActionPerformed
+
+    private void campoNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNombreKeyPressed
+        // Comprobar si la tecla presionada es Enter:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Colocar el foco en el siguiente campo:
+            this.campoMail.requestFocus();
+        }
+    }//GEN-LAST:event_campoNombreKeyPressed
+
+    private void campoMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoMailKeyPressed
+        // Comprobar si la tecla presionada es Enter:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Colocar el foco en el siguiente campo:
+            this.botonAceptar.requestFocus();
+        }
+    }//GEN-LAST:event_campoMailKeyPressed
+
+    private void botonAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botonAceptarKeyPressed
+        // Comprobar si la tecla presionada es Enter:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Pegar acá el código del botón
+            
+            try {
+                //se crea un nuevo usuario a partir de los datos
+                //ingresados en los campos del formulario:
+                String nombre = campoNombre.getText();
+                String mail = campoMail.getText();
+                Usuario nuevoUsuario = new Usuario(0, nombre, mail);
+                this.principal.agregarUsuario(nuevoUsuario);
+
+                //Se limpian los campos:
+                this.campoId.setText("");
+                this.campoNombre.setText("");
+                this.campoMail.setText("");
+
+                actualizarTabla();
+                //Se muestra un mensaje al usuario:
+                JOptionPane.showMessageDialog(this,
+                        "Usuario ingresado correctamente",
+                        "Nuevo Usuario",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "No se pudo ingresar el usuario",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botonAceptarKeyPressed
 
     private void actualizarTabla() {
         DefaultTableModel model = (DefaultTableModel) tablaUsuarios.getModel();
