@@ -40,9 +40,10 @@ public class Principal {
     }
     
     public int posicionUsuario(Usuario u){
+        this.listaUsuarios = listarUsuarios();
         // Recorre la lista de usuarios:
         for (int i = 0; i < this.listaUsuarios.size(); i++) {
-            // Compara el id de cada usiario con el usuario seleccionado:
+            // Compara el id de cada usuario con el usuario seleccionado:
             if(u.getId() == this.listaUsuarios.get(i).getId()){
                 // Cuando lo encuentra, devuelve la posición:
                 return i;
